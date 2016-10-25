@@ -77,89 +77,76 @@
             <version>2.2.1</version>
         </dependency>
 
-        <!-- compile scope -->
         <dependency>
             <groupId>io.cloudslang</groupId>
             <artifactId>score-api</artifactId>
             <version>${cloudslang-score.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${spring-boot.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
             <version>${spring-boot.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>io.cloudslang.lang</groupId>
             <artifactId>cloudslang-compiler</artifactId>
             <version>${cloudslang.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>io.cloudslang.lang</groupId>
             <artifactId>cloudslang-entities</artifactId>
             <version>${cloudslang.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>io.cloudslang</groupId>
             <artifactId>score-data-api</artifactId>
             <version>${cloudslang-score.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>1.7.2.RELEASE</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>8.0.30</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- test artifacts -->
