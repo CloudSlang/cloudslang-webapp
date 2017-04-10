@@ -31,7 +31,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("spring/slangWebappContext.xml")
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "io.cloudslang.web")
+@ComponentScan(basePackages = "io.cloudslang")
 public class ScoreWebApplication {
 
     public static void main(String[] args) {

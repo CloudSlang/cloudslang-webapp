@@ -19,26 +19,17 @@ import java.util.Map;
  */
 public class ExecutionTriggeringVo {
 
-    private String slangFilePath; // the slang file of the flow we want to trigger, location on the server of slangWebApp
-    private String slangDir; //The directory where all files are that we need as dependencies
+    private String slangFlowId;
     private Map<String, Object> runInputs;
     private Map<String, String> systemProperties;
 
 
-    public String getSlangFilePath() {
-        return slangFilePath;
+    public String getSlangFlowId() {
+        return slangFlowId;
     }
 
-    public void setSlangFilePath(String slangFilePath) {
-        this.slangFilePath = slangFilePath;
-    }
-
-    public String getSlangDir() {
-        return slangDir;
-    }
-
-    public void setSlangDir(String slangDir) {
-        this.slangDir = slangDir;
+    public void setSlangFlowId(String slangFlowId) {
+        this.slangFlowId = slangFlowId;
     }
 
     public Map<String, Object> getRunInputs() {

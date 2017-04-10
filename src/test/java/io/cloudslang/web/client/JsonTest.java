@@ -37,9 +37,7 @@ public class JsonTest {
 
         ExecutionTriggeringVo triggerVo = new ExecutionTriggeringVo();
 
-        triggerVo.setSlangFilePath("C:\\PROJS\\slang-content\\org\\cloudslang\\slang\\base\\print\\print_text.sl");
-
-        triggerVo.setSlangDir("C:\\PROJS\\slang-content\\org\\cloudslang\\slang");
+        triggerVo.setSlangFlowId("C:\\PROJS\\slang-content\\org\\cloudslang\\slang\\base\\print\\print_text.sl");
 
         Map<String, Object> inputs = new HashMap<>();
         inputs.put("text", "blabla");

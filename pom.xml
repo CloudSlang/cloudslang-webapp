@@ -17,9 +17,10 @@
         <jackson.version>2.2.2</jackson.version>
         <docker.image.prefix>orius123</docker.image.prefix>
         <cloudslang-score.version>0.3.40</cloudslang-score.version>
-        <cloudslang.version>1.0.RC2</cloudslang.version>
+        <cloudslang.version>1.0.3</cloudslang.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring-boot.version>1.2.8.RELEASE</spring-boot.version>
+        <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <hibernate.version>5.0.11.Final</hibernate.version>
     </properties>
 
@@ -50,6 +51,12 @@
         <dependency>
             <groupId>io.cloudslang.lang</groupId>
             <artifactId>cloudslang-all</artifactId>
+            <version>${cloudslang.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cloudslang.lang</groupId>
+            <artifactId>cloudslang-cli</artifactId>
             <version>${cloudslang.version}</version>
         </dependency>
 
