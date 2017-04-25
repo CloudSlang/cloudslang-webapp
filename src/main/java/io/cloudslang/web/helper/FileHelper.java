@@ -1,22 +1,23 @@
-/*******************************************************************************
- * (c) Copyright 2017 Hewlett-Packard Development Company, L.P.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Apache License v2.0 which accompany this distribution.
- *
- * The Apache License is available at
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- *******************************************************************************/
+/******************************************************************************
+ (c) Copyright 2017 Hewlett-Packard Development Company, L.P.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Apache License v2.0 which accompany this distribution.
+
+ The Apache License is available at
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ */
 package io.cloudslang.web.helper;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
+@Component
 public class FileHelper {
 
-    @Value("${content.path}")
-    private static String contentPath = "c:\\Temp\\"; //FIXME: Remove this hardcoding
+    private static String contentPath;
 
     public static String filePathToFlowId(String filePath) {
         return filePath
