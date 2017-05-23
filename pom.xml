@@ -15,9 +15,8 @@
 
     <properties>
         <jackson.version>2.2.2</jackson.version>
-        <docker.image.prefix>orius123</docker.image.prefix>
-        <cloudslang-score.version>0.3.40</cloudslang-score.version>
-        <cloudslang.version>1.0.3</cloudslang.version>
+        <cloudslang-score.version>0.3.41</cloudslang-score.version>
+        <cloudslang.version>1.0.6</cloudslang.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring-boot.version>1.2.8.RELEASE</spring-boot.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
@@ -191,6 +190,35 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
 
     </dependencies>
 
@@ -223,7 +251,7 @@
                     </includes>
                     <!--Pass arguments using ${var} syntax in license.template file-->
                     <properties>
-                        <copyright.year>2017</copyright.year>
+                        <copyright.year>2016</copyright.year>
                     </properties>
                     <!--Custom mapping for java extensions-->
                     <useDefaultMapping>false</useDefaultMapping>
@@ -274,13 +302,10 @@
                             <failOnWarning>true</failOnWarning>
                             <ignoredUsedUndeclaredDependencies>
                                 <ignoredUsedUndeclaredDependency>org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>org.apache.tomcat.embed:tomcat-embed-core:jar:8.0.20</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>javax.annotation:jsr250-api:jar:1.0</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>com.fasterxml.jackson.core:jackson-annotations:jar:2.2.2</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>commons-io:commons-io:jar:2.4</ignoredUsedUndeclaredDependency>
                             </ignoredUsedUndeclaredDependencies>
                             <ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-web:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-security:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-core:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-entitymanager:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>io.cloudslang:score-all:jar:${cloudslang-score.version}</ignoredUnusedDeclaredDependency>
@@ -343,6 +368,22 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-security</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/security</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/security</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -379,6 +420,7 @@
                                         <include name="bin/win64/*"/>
                                         <include name="configuration/*"/>
                                         <include name="maven/**"/>
+                                        <include name="security/**"/>
                                         <include name="${project.build.finalName}.jar"/>
                                     </fileset>
                                 </zip>
@@ -436,24 +478,6 @@
                     </requiresUnpack>
                 </configuration>
             </plugin>
-            <!-- tag::plugin[] -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.2.3</version>
-                <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-            <!-- end::plugin[] -->
         </plugins>
     </build>
 

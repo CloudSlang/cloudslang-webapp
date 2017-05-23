@@ -10,29 +10,28 @@
 package io.cloudslang.web.services;
 
 import io.cloudslang.lang.cli.utils.CompilerHelper;
+import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.entities.CompilationArtifact;
 import io.cloudslang.lang.entities.bindings.Input;
 import io.cloudslang.web.client.FlowInputVo;
 import io.cloudslang.web.client.FlowVo;
 import io.cloudslang.web.helper.FileHelper;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.RegexFileFilter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.RegexFileFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
-public class FlowServiceImpl implements FlowService { //FIXME: Create interface with JavaDoc
+public class FlowServiceImpl implements FlowService {
 
     private static final String SLANG_FILE_PATTERN = "^.*\\.sl";
 
@@ -59,7 +58,7 @@ public class FlowServiceImpl implements FlowService { //FIXME: Create interface 
     }
 
     private boolean fileIsFlow(File file) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.UTF_8);
+        List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), SlangSource.getCloudSlangCharset());
         for (String line : lines) {
             if (line.contains(FLOW_TAG) && !line.contains(WORKFLOW_TAG)) {
                 return true;

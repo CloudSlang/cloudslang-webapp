@@ -1,0 +1,8 @@
+application:
+  users:
+    - username: admin
+      password: admin
+      roles: READ, EXECUTE
+    - username: author
+      password: author
+      roles: READ

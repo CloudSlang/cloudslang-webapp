@@ -13,6 +13,8 @@ import io.cloudslang.web.client.FlowInputVo;
 import io.cloudslang.web.client.FlowVo;
 import io.cloudslang.web.client.VersionVo;
 import io.cloudslang.web.services.FlowServiceImpl;
+import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -23,15 +25,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.util.List;
-
 @Component
 @RestController
 @RequestMapping("cs/rest")
 public class FlowController {
 
-    private static String slangVersion;
+    @Value("${slang.version}")
+    private String slangVersion;
 
     @Autowired
     private FlowServiceImpl flowServiceImpl;
@@ -61,10 +61,5 @@ public class FlowController {
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @Value("${slang.version}")
-    public void setVersion(String slangVersion) {
-        this.slangVersion = slangVersion;
     }
 }

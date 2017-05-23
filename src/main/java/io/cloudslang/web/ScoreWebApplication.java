@@ -1,5 +1,5 @@
 /*******************************************************************************
- * (c) Copyright 2017 Hewlett-Packard Development Company, L.P.
+ * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
@@ -28,12 +28,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @Import(SlangSpringConfiguration.class)
 @ImportResource("spring/slangWebappContext.xml")
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "io.cloudslang")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ScoreWebApplication {
 
     public static void main(String[] args) {

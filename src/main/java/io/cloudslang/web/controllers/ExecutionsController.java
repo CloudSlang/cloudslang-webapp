@@ -1,5 +1,5 @@
 /*******************************************************************************
- * (c) Copyright 2017 Hewlett-Packard Development Company, L.P.
+ * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,7 @@ public class ExecutionsController {
 
     private static Gson gson = new Gson();
 
+    @PreAuthorize("hasRole('EXECUTE')")
     @RequestMapping(value = "/v1/executions", method = RequestMethod.POST)
     public Long triggerExecution(@RequestBody String executionTriggeringVoStr) {
 
@@ -49,6 +51,7 @@ public class ExecutionsController {
         return service.triggerExecution(executionTriggeringVo);
     }
 
+    @PreAuthorize("hasRole('EXECUTE')")
     @RequestMapping(value = "/v1/executions/{executionId}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ExecutionSummaryWebVo> getExecution(@PathVariable("executionId") Long executionId) {

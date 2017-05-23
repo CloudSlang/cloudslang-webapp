@@ -6,15 +6,12 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:score="http://www.cloudslang.io/schema/score"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-        http://www.cloudslang.io/schema/score http://www.cloudslang.io/schema/score.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+        http://www.cloudslang.io/schema/score http://www.cloudslang.io/schema/score.xsd">
 
     <score:engine externalDatabase = "true"/>
 
@@ -65,7 +62,5 @@
     <bean id="transactionTemplate"
           class="org.springframework.transaction.support.TransactionTemplate"
           p:transactionManager-ref="transactionManager" />
-
-    <context:property-placeholder location="classpath:configuration/cslang.properties" />
 
 </beans>
