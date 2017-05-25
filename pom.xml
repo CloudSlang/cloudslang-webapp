@@ -15,12 +15,13 @@
 
     <properties>
         <jackson.version>2.2.2</jackson.version>
-        <docker.image.prefix>orius123</docker.image.prefix>
-        <cloudslang-score.version>0.3.40</cloudslang-score.version>
-        <cloudslang.version>1.0.RC2</cloudslang.version>
+        <cloudslang-score.version>0.3.41</cloudslang-score.version>
+        <cloudslang.version>1.0.6</cloudslang.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring-boot.version>1.2.8.RELEASE</spring-boot.version>
+        <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <hibernate.version>5.0.11.Final</hibernate.version>
+        <plugins.maven-dependency-plugin.version>2.10</plugins.maven-dependency-plugin.version>
     </properties>
 
     <dependencies>
@@ -54,9 +55,21 @@
         </dependency>
 
         <dependency>
+            <groupId>io.cloudslang.lang</groupId>
+            <artifactId>cloudslang-cli</artifactId>
+            <version>${cloudslang.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.cloudslang</groupId>
             <artifactId>score-all</artifactId>
             <version>${cloudslang-score.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -132,6 +145,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.cloudslang.lang</groupId>
+            <artifactId>cloudslang-api-commons</artifactId>
+            <version>${cloudslang.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.cloudslang</groupId>
             <artifactId>score-data-api</artifactId>
             <version>${cloudslang-score.version}</version>
@@ -171,6 +190,35 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
 
     </dependencies>
 
@@ -194,6 +242,7 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
+                    <failIfMissing>false</failIfMissing>
                     <header>${project.basedir}/license.template</header>
                     <headerDefinitions>
                         <headerDefinition>${project.basedir}/header-definitions.xml</headerDefinition>
@@ -223,8 +272,28 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
+                <version>${plugins.maven-dependency-plugin.version}</version>
                 <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.maven</groupId>
+                                    <artifactId>apache-maven</artifactId>
+                                    <classifier>bin</classifier>
+                                    <type>zip</type>
+                                    <version>3.3.9</version>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.basedir}/target/maven</outputDirectory>
+                                    <destFileName>maven</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>analyze dependencies</id>
                         <goals>
@@ -234,17 +303,129 @@
                             <failOnWarning>true</failOnWarning>
                             <ignoredUsedUndeclaredDependencies>
                                 <ignoredUsedUndeclaredDependency>org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>org.apache.tomcat.embed:tomcat-embed-core:jar:8.0.20</ignoredUsedUndeclaredDependency>
-                                <ignoredUsedUndeclaredDependency>javax.annotation:jsr250-api:jar:1.0</ignoredUsedUndeclaredDependency>
                             </ignoredUsedUndeclaredDependencies>
                             <ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-web:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-security:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-core:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-entitymanager:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>io.cloudslang:score-all:jar:${cloudslang-score.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>com.h2database:h2:jar:1.4.183</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.aspectj:aspectjtools:jar:1.8.4</ignoredUnusedDeclaredDependency>
                             </ignoredUnusedDeclaredDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-maven-conf</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/maven/conf</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/maven/conf</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-cslang-configuration</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/configuration</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/configuration</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-bin</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/bin</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/bin</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-security</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/security</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/security</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <unzip src="${project.basedir}/src/main/resources/dependency-base.zip"
+                                       dest="${project.basedir}/target/maven/repo">
+                                    <patternset>
+                                        <exclude name="**/*.path"/>
+                                    </patternset>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>zip assembly</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <zip destfile="${project.basedir}/target/${project.build.finalName}.zip">
+                                    <fileset dir="${project.basedir}/target">
+                                        <include name="bin/win64/*"/>
+                                        <include name="configuration/*"/>
+                                        <include name="maven/**"/>
+                                        <include name="security/**"/>
+                                        <include name="${project.build.finalName}.jar"/>
+                                    </fileset>
+                                </zip>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
@@ -298,24 +479,6 @@
                     </requiresUnpack>
                 </configuration>
             </plugin>
-            <!-- tag::plugin[] -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.2.3</version>
-                <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-            <!-- end::plugin[] -->
         </plugins>
     </build>
 

@@ -19,6 +19,8 @@ package io.cloudslang.web;
 import io.cloudslang.lang.api.Slang;
 import io.cloudslang.lang.api.SlangImpl;
 import io.cloudslang.lang.api.configuration.SlangSpringConfiguration;
+import io.cloudslang.lang.commons.services.api.UserConfigurationService;
+import io.cloudslang.lang.commons.services.impl.UserConfigurationServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -26,20 +28,33 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @Import(SlangSpringConfiguration.class)
 @ImportResource("spring/slangWebappContext.xml")
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "io.cloudslang.web")
+@ComponentScan(basePackages = "io.cloudslang")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ScoreWebApplication {
 
     public static void main(String[] args) {
+        loadUserProperties();
         SpringApplication.run(ScoreWebApplication.class, args);
     }
 
     @Bean
     public Slang getSlang() {
         return new SlangImpl();
+    }
+
+    private static void loadUserProperties() {
+        try {
+            UserConfigurationService userConfigurationService = new UserConfigurationServiceImpl();
+            userConfigurationService.loadUserProperties();
+        } catch (Exception ex) {
+            System.out.println("Error occurred while loading user configuration: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 }

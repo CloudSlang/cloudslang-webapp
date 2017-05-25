@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("cs/rest")
 @EnableAutoConfiguration
 public class ExecutionsController {
 
@@ -40,7 +42,8 @@ public class ExecutionsController {
 
     private static Gson gson = new Gson();
 
-    @RequestMapping(value = "/executions", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('EXECUTE')")
+    @RequestMapping(value = "/v1/executions", method = RequestMethod.POST)
     public Long triggerExecution(@RequestBody String executionTriggeringVoStr) {
 
         ExecutionTriggeringVo executionTriggeringVo = gson.fromJson(executionTriggeringVoStr, ExecutionTriggeringVo.class);
@@ -48,7 +51,8 @@ public class ExecutionsController {
         return service.triggerExecution(executionTriggeringVo);
     }
 
-    @RequestMapping(value = "/executions/{executionId}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('EXECUTE')")
+    @RequestMapping(value = "/v1/executions/{executionId}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ExecutionSummaryWebVo> getExecution(@PathVariable("executionId") Long executionId) {
         try {

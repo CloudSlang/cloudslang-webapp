@@ -4,11 +4,14 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:score="http://www.cloudslang.io/schema/score"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.cloudslang.io/schema/score http://www.cloudslang.io/schema/score.xsd">
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:score="http://www.cloudslang.io/schema/score"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.cloudslang.io/schema/score http://www.cloudslang.io/schema/score.xsd">
 
     <score:engine externalDatabase = "true"/>
 
