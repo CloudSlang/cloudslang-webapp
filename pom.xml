@@ -242,6 +242,7 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
+                    <failIfMissing>false</failIfMissing>
                     <header>${project.basedir}/license.template</header>
                     <headerDefinitions>
                         <headerDefinition>${project.basedir}/header-definitions.xml</headerDefinition>
