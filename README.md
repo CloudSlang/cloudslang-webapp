@@ -1,7 +1,10 @@
 # cloudslang-webapp
 This repository contains a Spring Boot REST API based webapp for CloudSlang.
-It gives one the ability to list CloudSlang workflows, get input details of a particular workflow, 
-trigger CloudSlang workflows and get execution details.
+It gives one the ability to:
+ *  List CloudSlang workflows, 
+ *  Get input details of a particular workflow, 
+ *  Trigger CloudSlang workflows,
+ *  Get execution details.
 
 1. [Description](#description)
 2. [General Usage](#general-usage)
@@ -11,7 +14,7 @@ trigger CloudSlang workflows and get execution details.
 
 ## Description
 
-The webapp is currently in experimental phase thus version 0.0.1-SNAPSHOT is provided.
+The webapp is currently in _experimental phase_ thus a SNAPSHOT based 0.0.1 version is provided.
 It uses CloudSlang 1.0.6 and Spring Boot 1.2.8.
 
 <a name="general-usage"/>
@@ -48,7 +51,7 @@ To run build the webapp and trigger it
    ```
     java -jar -Dapp.home="$APP_HOME" "$APP_HOME\cloudslang-webapp-0.0.1-SNAPSHOT.jar"
    ```
-The webapp will start by default on port 8080 and the following REST API calls 
+> The webapp will start by default on port 8080 and the following REST API calls 
 can be performed:
  
  ```
@@ -63,21 +66,21 @@ can be performed:
         b. {executionId} = The ID of the execution retrieved by the POST executions call
         c. The POST on executions expects a body similar to:
         
-            _{    
+            {    
                 "slangFlowId": "io.cloudslang.base.examples.parallel_loop.create_directory",
                 "runInputs": {
                 "directory_name" : "test_folder"
                 },
                 "systemProperties": {}
-            }_
+            }
  
  ```   
  **Note:** In the configuration folder there is a _cslang.properties_ file where among other things 
  one can specify the filesystem path of the CloudSlang workflows.
  
-    Simply change the _content.path_ to a desired value like below and start the webapp: 
+    Simply change the content.path to a desired value like below and start the webapp: 
  
-    ```content.path=C://cloud-slang-content/content/```
+    content.path=C://cloud-slang-content/content/
  
 <a name="contribution-guideline"/>                                       
                                        
