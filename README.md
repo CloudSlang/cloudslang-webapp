@@ -1,4 +1,7 @@
 # cloudslang-webapp
+
+[![Join the chat at https://gitter.im/CloudSlang/cloudslang-webapp](https://badges.gitter.im/CloudSlang/cloudslang-webapp.svg)](https://gitter.im/CloudSlang/cloudslang-webapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This repository contains a Spring Boot REST API based webapp for CloudSlang.
 It gives one the ability to:
  *  List CloudSlang workflows, 
