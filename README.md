@@ -21,7 +21,7 @@ It uses CloudSlang 1.0.6 and Spring Boot 1.2.8.
 
 ## General usage
 
-To run build the webapp and trigger it
+In order to build the webapp and run it
 
 #### PREREQUISITES
 
