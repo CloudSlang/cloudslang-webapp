@@ -5,7 +5,7 @@
 
     <groupId>io.cloudslang</groupId>
     <artifactId>cloudslang-webapp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
     <properties>
         <jackson.version>2.2.2</jackson.version>
         <cloudslang-score.version>0.3.41</cloudslang-score.version>
-        <cloudslang.version>1.0.6</cloudslang.version>
+        <cloudslang.version>1.0.7</cloudslang.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring-boot.version>1.2.8.RELEASE</spring-boot.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>

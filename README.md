@@ -17,7 +17,7 @@ It gives one the ability to:
 
 ## Description
 
-The webapp is currently in _experimental phase_ thus a SNAPSHOT based 0.0.1 version is provided.
+The webapp is at 0.0.1 version.
 It uses CloudSlang 1.0.6 and Spring Boot 1.2.8.
 
 <a name="general-usage"/>
@@ -84,7 +84,17 @@ can be performed:
     Simply change the content.path to a desired value like below and start the webapp: 
  
     content.path=C://cloud-slang-content/content/
- 
+5. In the _cloudslang-webapp/src/main/resources/security/users.yml_ file users with READ/EXECUTE rights
+  can be configured upon desire as authentication is enabled by default: 
+  ```application:
+       users:
+         - username: admin
+           password: admin
+           roles: READ, EXECUTE
+         - username: author
+           password: author
+           roles: READ
+  ```
 <a name="contribution-guideline"/>                                       
                                        
 ## Contribution Guideline
