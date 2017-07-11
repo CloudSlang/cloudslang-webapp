@@ -33,7 +33,7 @@ In order to build the webapp and run it
 > [Maven 3.3.9](https://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/) installed in order to build. 
 
 1. Clone this repository and build it, by running (**mvn clean install**).
-   Go to the target folder and look for cloudslang-webapp-0.0.1-SNAPSHOT.zip
+   Go to the target folder and look for cloudslang-webapp-0.0.1.zip
 
 2. Extract the .zip file to a folder of your choice.
    
@@ -44,7 +44,7 @@ In order to build the webapp and run it
        logs\
        maven\
        security\
-       cloudslang-webapp-0.0.1-SNAPSHOT.jar
+       cloudslang-webapp-0.0.1.jar
    ```
    
 3. If you are on Windows go to the bin\win64\ folder and trigger the webapp.bat
@@ -52,7 +52,7 @@ In order to build the webapp and run it
    the folder where you extracted the zip:
    
    ```
-    java -jar -Dapp.home="$APP_HOME" "$APP_HOME\cloudslang-webapp-0.0.1-SNAPSHOT.jar"
+    java -jar -Dapp.home="$APP_HOME" "$APP_HOME\cloudslang-webapp-0.0.1.jar"
    ```
 > The webapp will start by default on port 8080 and the following REST API calls 
 can be performed:
