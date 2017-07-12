@@ -30,7 +30,11 @@ In order to build the webapp and run it
 
 > Java 8 installed in order to run.
 
-> [Maven 3.3.9](https://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/) installed in order to build. 
+> [Maven 3.3.9](https://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/) installed in order to build.
+
+> SSL Certificate (self-signed or from a Certificate Authority) to be placed under the security folder.
+
+> SSL Settings to be altered according to the needs, based on the details provided below.
 
 1. Clone this repository and build it, by running (**mvn clean install**).
    Go to the target folder and look for cloudslang-webapp-0.0.1.zip
@@ -54,15 +58,15 @@ In order to build the webapp and run it
    ```
     java -jar -Dapp.home="$APP_HOME" "$APP_HOME\cloudslang-webapp-0.0.1.jar"
    ```
-> The webapp will start by default on port 8080 and the following REST API calls 
+> The webapp will start by default on port 8443 and the following REST API calls 
 can be performed:
  
  ```
-    GET: http://<FQDN>:8080/cs/rest/version
-    GET: http://<FQDN>:8080/cs/rest/flows/v1/flows
-    GET: http://<FQDN>:8080/cs/rest/flows/v1/{flowId}/inputs
-    POST: http://<FQDN>:8080/cs/rest/v1/executions
-    GET: http://<FQDN>:8080/cs/rest/v1/executions/{executionId}
+    GET: https://<FQDN>:8443/cs/rest/version
+    GET: https://<FQDN>:8443/cs/rest/flows/v1/flows
+    GET: https://<FQDN>:8443/cs/rest/flows/v1/{flowId}/inputs
+    POST: https://<FQDN>:8443/cs/rest/v1/executions
+    GET: https://<FQDN>:8443/cs/rest/v1/executions/{executionId}
     
     where:
         a. {flowId} = CloudSlang based UUID of the flow (namespace.name)
@@ -95,6 +99,18 @@ can be performed:
            password: author
            roles: READ
   ```
+6. The application is configured to work with HTTPS only. The SSL related settings are part of the _cslang.properties_ 
+file:
+ 
+  ```ssl.port: 8443
+     ssl.key-store: ${app.home}/security/keystore.p12
+     ssl.key-store-password: mypassword
+     ssl.keyStoreType: PKCS12
+     ssl.keyAlias: tomcat
+  ```
+**Note:** Make sure to place your own certificate under the _/security_ folder and make the relevant password updates.
+
+
 <a name="contribution-guideline"/>                                       
                                        
 ## Contribution Guideline
