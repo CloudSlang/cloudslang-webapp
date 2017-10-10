@@ -14,10 +14,10 @@
     </parent>
 
     <properties>
-        <jackson.version>2.2.2</jackson.version>
-        <cloudslang-score.version>0.3.41</cloudslang-score.version>
-        <cloudslang.version>1.0.7</cloudslang.version>
-        <spring.version>4.2.5.RELEASE</spring.version>
+        <jackson.version>2.8.10</jackson.version>
+        <cloudslang-score.version>0.3.45</cloudslang-score.version>
+        <cloudslang.version>1.0.10</cloudslang.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
         <spring-boot.version>1.2.8.RELEASE</spring-boot.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <hibernate.version>5.0.11.Final</hibernate.version>

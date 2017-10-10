@@ -17,8 +17,8 @@ It gives one the ability to:
 
 ## Description
 
-The webapp is at 0.0.1 version.
-It uses CloudSlang 1.0.6 and Spring Boot 1.2.8.
+The webapp is set to 0.0.1 version.
+It uses CloudSlang 1.0.10 and Spring Boot 1.2.8.
 
 <a name="general-usage"/>
 
