@@ -10,14 +10,18 @@
 package io.cloudslang.web.controllers;
 
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ErrorAttributes;
-import org.springframework.boot.autoconfigure.web.ErrorController;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 
 @RestController
 @RequestMapping("/error")
@@ -36,8 +40,8 @@ public class ScoreWebApplicationErrorController implements ErrorController {
     }
 
     @RequestMapping
-    public Map<String, Object> error(HttpServletRequest aRequest) {
-        RequestAttributes requestAttributes = new ServletRequestAttributes(aRequest);
-        return errorAttributes.getErrorAttributes(requestAttributes, false);
+    public Map<String, Object> error(WebRequest webRequest) {
+
+        return this.errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults());
     }
 }
