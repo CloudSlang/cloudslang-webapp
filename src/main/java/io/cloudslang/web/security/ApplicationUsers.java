@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "application", locations = "file:${app.home}/security/users.yml")
+@ConfigurationProperties
 public class ApplicationUsers {
     private final List<ApplicationUser> users = new ArrayList<>();
 
