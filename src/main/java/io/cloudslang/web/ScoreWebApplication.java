@@ -22,24 +22,20 @@ import io.cloudslang.lang.api.configuration.SlangSpringConfiguration;
 import io.cloudslang.lang.commons.services.api.UserConfigurationService;
 import io.cloudslang.lang.commons.services.impl.UserConfigurationServiceImpl;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @SpringBootApplication
-@EnableJpaRepositories("io.cloudslang.web.repositories")
+
 @EntityScan("io.cloudslang.web.client")
 @Import(SlangSpringConfiguration.class)
 @ImportResource("spring/slangWebappContext.xml")
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class ScoreWebApplication {
+
+public class ScoreWebApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         loadUserProperties();

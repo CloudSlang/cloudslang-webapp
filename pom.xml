@@ -24,16 +24,17 @@
         <plugins.maven-dependency-plugin.version>3.0.2</plugins.maven-dependency-plugin.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
+          <!--  <exclusions>
                 <exclusion>
                     <artifactId>log4j-over-slf4j</artifactId>
                     <groupId>org.slf4j</groupId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -41,6 +42,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -64,12 +66,12 @@
             <groupId>io.cloudslang</groupId>
             <artifactId>score-all</artifactId>
             <version>${cloudslang-score.version}</version>
-            <exclusions>
+           <!-- <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -78,11 +80,11 @@
             <version>1.4.199</version>
         </dependency>
 
-        <dependency>
+  <!--      <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
-            <version>1.8.2</version>
-        </dependency>
+            <version>1.8.4</version>
+        </dependency>-->
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -164,7 +166,7 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>8.0.30</version>
+            <version>9.0.44</version>
         </dependency>
 
 
@@ -220,7 +222,16 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -285,15 +296,19 @@
                                 <ignoredUsedUndeclaredDependency>javax.persistence:javax.persistence-api:jar:2.2</ignoredUsedUndeclaredDependency>
                                 <ignoredUsedUndeclaredDependency>io.cloudslang.lang:cloudslang-runtime:jar:1.0.260</ignoredUsedUndeclaredDependency>
                                 <ignoredUsedUndeclaredDependency>jakarta.annotation:jakarta.annotation-api:jar:1.3.5</ignoredUsedUndeclaredDependency>
+                                <ignoredUsedUndeclaredDependency>org.apache.tomcat:tomcat-annotations-api:jar:9.0.44</ignoredUsedUndeclaredDependency>
                             </ignoredUsedUndeclaredDependencies>
                             <ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependency>com.h2database:h2:jar:1.4.199</ignoredUnusedDeclaredDependency>
-                                <ignoredUnusedDeclaredDependency>org.aspectj:aspectjtools:jar:1.8.2</ignoredUnusedDeclaredDependency>
+                               <!-- <ignoredUnusedDeclaredDependency>org.aspectj:aspectjtools:jar:1.8.4</ignoredUnusedDeclaredDependency>-->
                                 <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-web:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-tomcat:jar:2.4.4</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.springframework.boot:spring-boot-starter-security:jar:${spring-boot.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-core:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>org.hibernate:hibernate-entitymanager:jar:${hibernate.version}</ignoredUnusedDeclaredDependency>
                                 <ignoredUnusedDeclaredDependency>io.cloudslang:score-all:jar:${cloudslang-score.version}</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.apache.tomcat.embed:tomcat-embed-core:jar:9.0.44</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>javax.xml.bind:jaxb-api:jar:2.3.0</ignoredUnusedDeclaredDependency>
                             </ignoredUnusedDeclaredDependencies>
                         </configuration>
                     </execution>

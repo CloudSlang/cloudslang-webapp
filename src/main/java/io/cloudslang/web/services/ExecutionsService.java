@@ -12,6 +12,7 @@ package io.cloudslang.web.services;
 import io.cloudslang.score.facade.execution.ExecutionStatus;
 import io.cloudslang.web.client.ExecutionSummaryWebVo;
 import io.cloudslang.web.client.ExecutionTriggeringVo;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
  * Date: 3/8/15
  * Time: 3:11 PM
  */
+
+@Service
 public interface ExecutionsService {
 
     /**
