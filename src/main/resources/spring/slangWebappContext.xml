@@ -63,4 +63,9 @@
           class="org.springframework.transaction.support.TransactionTemplate"
           p:transactionManager-ref="transactionManager" />
 
+    <bean id="workerNodeService" class="io.cloudslang.engine.node.services.WorkerNodeServiceImpl"/>
+    <bean id="workerLockService" class="io.cloudslang.engine.node.services.WorkerLockServiceImpl"/>
+    <bean id="queueDispatcher" class="io.cloudslang.engine.queue.services.QueueDispatcherServiceImpl"/>
+    <bean id="execQueue" class="io.cloudslang.engine.queue.services.ExecutionQueueServiceImpl"/>
+    <bean id="executionAssignerService" class="io.cloudslang.engine.queue.services.assigner.ExecutionAssignerServiceImpl"/>
 </beans>
