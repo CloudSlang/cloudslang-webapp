@@ -1,7 +1,7 @@
 application:
   users:
     - username: admin
-      password: admin
+      password: password
       roles: READ, EXECUTE
     - username: author
       password: author

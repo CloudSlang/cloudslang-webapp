@@ -38,4 +38,12 @@ public class ApplicationUser {
     public void setRoles(String[] roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "ApplicationUser{" +
+                "username='" + username + '\'' +
+                ", password=" + password +
+                '}';
+    }
 }
