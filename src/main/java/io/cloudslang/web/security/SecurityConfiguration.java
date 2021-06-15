@@ -7,6 +7,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  *******************************************************************************/
+
+
+/*
+
 package io.cloudslang.web.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,3 +45,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 }
+*/

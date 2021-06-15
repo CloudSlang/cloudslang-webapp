@@ -11,15 +11,18 @@ package io.cloudslang.web.security;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix = "users")
+
 @Component
 public class ApplicationUsers {
     private final List<ApplicationUser> users = new ArrayList<>();
 
     public List<ApplicationUser> getUsers() {
         return this.users;
+    }
+
+    public void setUsers(List<ApplicationUser> users) {
+        users =  this.users;
     }
 }

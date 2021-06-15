@@ -39,11 +39,4 @@ public class ApplicationUser {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "ApplicationUser{" +
-                "username='" + username + '\'' +
-                ", password=" + password +
-                '}';
-    }
 }
