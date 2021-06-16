@@ -22,42 +22,33 @@ import io.cloudslang.lang.api.configuration.SlangSpringConfiguration;
 import io.cloudslang.lang.commons.services.api.UserConfigurationService;
 import io.cloudslang.lang.commons.services.impl.UserConfigurationServiceImpl;
 import io.cloudslang.web.security.ApplicationUsers;
-import io.cloudslang.web.services.CredentialServices;
-import io.cloudslang.web.services.CredentialServicesImpl;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
+@SpringBootApplication
+
 @EntityScan("io.cloudslang.web.client")
 @Import(SlangSpringConfiguration.class)
 @ImportResource("spring/slangWebappContext.xml")
 @ComponentScan(basePackages = "io.cloudslang")
-
+@EnableConfigurationProperties(ApplicationUsers.class)
 public class ScoreWebApplication {
 
     public static void main(String[] args) {
         loadUserProperties();
-        loadCredentials();
         SpringApplication.run(ScoreWebApplication.class, args);
     }
 
     @Bean
     public Slang getSlang() {
         return new SlangImpl();
-    }
-
-    private static void loadCredentials() {
-        try {
-            CredentialServices credentialServices = new CredentialServicesImpl();
-            credentialServices.loadUserCredentials();
-        } catch (Exception ex) {
-            System.out.println("Error occurred while loading user configuration: " + ex.getMessage());
-            ex.printStackTrace();
-        }
     }
 
     private static void loadUserProperties() {

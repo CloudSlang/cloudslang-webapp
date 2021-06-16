@@ -9,7 +9,7 @@
  *******************************************************************************/
 
 
-/*
+
 
 package io.cloudslang.web.security;
 
@@ -45,4 +45,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 }
-*/
+
