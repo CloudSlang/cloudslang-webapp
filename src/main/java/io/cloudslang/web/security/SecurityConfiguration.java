@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         for (ApplicationUser client : applicationUsers.getUsers()) {
             auth.inMemoryAuthentication()
-                    .withUser(client.getUsername()).password(client.getPassword()).roles(client.getRoles());
+                    .withUser(client.getUsername()).password("{noop}" + client.getPassword()).roles(client.getRoles());
         }
     }
 
