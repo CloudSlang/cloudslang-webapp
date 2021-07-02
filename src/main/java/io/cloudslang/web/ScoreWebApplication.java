@@ -25,18 +25,18 @@ import io.cloudslang.web.security.ApplicationUsers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = TransactionAutoConfiguration.class)
 
 @EntityScan("io.cloudslang.web.client")
 @Import(SlangSpringConfiguration.class)
 @ImportResource("spring/slangWebappContext.xml")
-@ComponentScan(basePackages = "io.cloudslang")
 @EnableConfigurationProperties(ApplicationUsers.class)
 public class ScoreWebApplication {
 
