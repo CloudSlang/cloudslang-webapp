@@ -11,10 +11,12 @@ package io.cloudslang.web.services;
 
 import io.cloudslang.web.client.FlowInputVo;
 import io.cloudslang.web.client.FlowVo;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
 
+@Service
 public interface FlowService {
 
 

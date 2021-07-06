@@ -7,6 +7,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  *******************************************************************************/
+
+
+
+
 package io.cloudslang.web.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         for (ApplicationUser client : applicationUsers.getUsers()) {
             auth.inMemoryAuthentication()
-                    .withUser(client.getUsername()).password(client.getPassword()).roles(client.getRoles());
+                    .withUser(client.getUsername()).password("{noop}" + client.getPassword()).roles(client.getRoles());
         }
     }
 
@@ -41,3 +45,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 }
+

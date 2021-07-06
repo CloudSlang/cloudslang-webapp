@@ -9,6 +9,7 @@
  *******************************************************************************/
 package io.cloudslang.web.client;
 
+import javax.persistence.Entity;
 import java.util.Map;
 
 /**
@@ -17,6 +18,7 @@ import java.util.Map;
  * Date: 3/1/15
  * Time: 11:26 AM
  */
+
 public class ExecutionTriggeringVo {
 
     private String slangFlowId;

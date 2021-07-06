@@ -3,21 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:score="http://www.cloudslang.io/schema/score"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         http://www.cloudslang.io/schema/score http://www.cloudslang.io/schema/score.xsd">
 
     <score:engine externalDatabase = "true"/>
 
     <score:worker uuid="-1"/>
-
-    <tx:annotation-driven/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE;LOCK_TIMEOUT=5000"/>
@@ -58,9 +54,18 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
-
-    <bean id="transactionTemplate"
+   <bean id="transactionTemplate"
           class="org.springframework.transaction.support.TransactionTemplate"
           p:transactionManager-ref="transactionManager" />
+    <bean id="workerLockService" class="io.cloudslang.engine.node.services.WorkerLockServiceImpl"/>
+    <bean id="engineVersionService" class="io.cloudslang.orchestrator.services.EngineVersionServiceImpl"/>
+    <bean id="workerNodeService" class="io.cloudslang.engine.node.services.WorkerNodeServiceImpl"/>
+    <bean id ="compilationHelper" class="io.cloudslang.lang.commons.services.impl.NoOpCompilationHelper"/>
+    <bean id="slangSourceService" class="io.cloudslang.lang.commons.services.impl.SlangSourceServiceImpl" />
+    <bean id="slangCompilationService" class="io.cloudslang.lang.commons.services.impl.SlangCompilationServiceImpl" />
+    <bean id="compilerHelper" class="io.cloudslang.lang.cli.utils.CompilerHelperImpl"/>
+    <bean id="execQueue" class="io.cloudslang.engine.queue.services.ExecutionQueueServiceImpl"/>
+    <bean id="queueDispatcher" class="io.cloudslang.engine.queue.services.QueueDispatcherServiceImpl"/>
+    <bean id="suspendedExecutionCleanerService" class="io.cloudslang.orchestrator.services.SuspendedExecutionCleanerServiceImpl" />
 
 </beans>

@@ -38,4 +38,5 @@ public class ApplicationUser {
     public void setRoles(String[] roles) {
         this.roles = roles;
     }
+
 }

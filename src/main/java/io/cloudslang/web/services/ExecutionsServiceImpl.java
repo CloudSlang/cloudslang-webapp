@@ -51,12 +51,12 @@ public class ExecutionsServiceImpl implements ExecutionsService {
     @Transactional
     public Long triggerExecution(ExecutionTriggeringVo executionTriggeringVo) {
         SlangSource flowSource = SlangSource.fromFile(new File(FileHelper.flowIdToFilePath(executionTriggeringVo.getSlangFlowId())));
-        String slangDir = FileHelper.getContentPath();
+       
         Map<String, Value> inputs = getInputs(executionTriggeringVo);
         Set<SystemProperty> systemProperties = getSystemProperties(executionTriggeringVo);
 
 
-        Long executionId = slang.compileAndRun(flowSource, getDependencies(slangDir), inputs, systemProperties);
+        Long executionId = slang.compileAndRun(flowSource, getDependencies(flowSource.getFilePath()), inputs, systemProperties);
 
         ExecutionSummaryEntity execution = new ExecutionSummaryEntity();
         execution.setExecutionId(executionId);

@@ -11,6 +11,7 @@ package io.cloudslang.web.repositories;
 
 import io.cloudslang.web.entities.ExecutionSummaryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +19,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Date: 3/2/15
  * Time: 2:51 PM
  */
+
+@Repository
 public interface ExecutionSummaryRepository extends JpaRepository<ExecutionSummaryEntity, Long> {
 
     ExecutionSummaryEntity findByExecutionId(Long executionId);
