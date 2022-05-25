@@ -19,7 +19,7 @@
         <cloudslang.version>2.0.5</cloudslang.version>
         <spring.version>5.3.4</spring.version>
         <spring-boot.version>2.4.4</spring-boot.version>
-        <spring-security.version>5.4.5</spring-security.version>
+        <spring-security.version>5.5.7</spring-security.version>
         <hibernate.version>5.4.21.Final</hibernate.version>
         <plugins.maven-dependency-plugin.version>3.0.2</plugins.maven-dependency-plugin.version>
     </properties>
