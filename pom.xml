@@ -17,7 +17,7 @@
         <jackson.version>2.10.3</jackson.version>
         <cloudslang-score.version>0.3.235</cloudslang-score.version>
         <cloudslang.version>2.0.5</cloudslang.version>
-        <spring.version>5.3.4</spring.version>
+        <spring.version>6.0.0</spring.version>
         <spring-boot.version>2.4.4</spring-boot.version>
         <spring-security.version>5.4.5</spring-security.version>
         <hibernate.version>5.4.21.Final</hibernate.version>
